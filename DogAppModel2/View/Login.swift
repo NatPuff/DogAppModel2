@@ -42,18 +42,23 @@ struct Login: View {
             .padding()
             .padding(.top, 10)
             
-            Button(action: loginData.verifyUser, label: {
-                Text("Verify")
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .padding(.vertical)
-                    .frame(width: UIScreen.main.bounds.width - 100)
-                    .background(Color(.blue))
-                    .clipShape(Capsule())
-            })
-                .disabled(loginData.code == "" || loginData.number == "" ? true : false)
-                .opacity(loginData.code == "" || loginData.number == "" ? 0.5 : 1)
-            
+            if loginData.isLoading {
+                ProgressView()
+                    .padding()
+            }
+            else{
+                Button(action: loginData.verifyUser, label: {
+                    Text("Verify")
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
+                        .padding(.vertical)
+                        .frame(width: UIScreen.main.bounds.width - 100)
+                        .background(Color(.blue))
+                        .clipShape(Capsule())
+                })
+                    .disabled(loginData.code == "" || loginData.number == "" ? true : false)
+                    .opacity(loginData.code == "" || loginData.number == "" ? 0.5 : 1)
+            }
             Spacer(minLength: 0)
         }
         .background(Color("bg").ignoresSafeArea(.all, edges: .all))

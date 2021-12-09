@@ -17,7 +17,14 @@ class LoginViewModel : ObservableObject{
     @Published var registerUser = false
     @AppStorage("current_Status") var status = false
     
+    @Published var isLoading = false
+    
+    
+    
     func verifyUser(){
+        isLoading = true
+        
+        
         Auth.auth().settings?.isAppVerificationDisabledForTesting = true
         
         
@@ -27,6 +34,7 @@ class LoginViewModel : ObservableObject{
              if err != nil {
                 self.errorMsg = err!.localizedDescription
                 self.error.toggle()
+                 self.isLoading = false
                 return
             }
             
@@ -36,6 +44,7 @@ class LoginViewModel : ObservableObject{
                     if err != nil {
                         self.errorMsg = err!.localizedDescription
                         self.error.toggle()
+                        self.isLoading = false
                         return
                     }
                     self.checkUser()
@@ -78,12 +87,13 @@ class LoginViewModel : ObservableObject{
                 
                 
                 self.registerUser.toggle()
+                self.isLoading = false
                 return
             }
             if snap!.documents.isEmpty{
                 
                 self.registerUser.toggle()
-
+                self.isLoading = false
                 return
             }
             self.status = true

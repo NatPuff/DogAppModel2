@@ -13,7 +13,7 @@ struct DogAppModel2App: App {
     @UIApplicationDelegateAdaptor(Appdelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            Login()
+            ContentView()
                 .onOpenURL(perform: {
                     url in
                     Auth.auth().canHandle(url)
