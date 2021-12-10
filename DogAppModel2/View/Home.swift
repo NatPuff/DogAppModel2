@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct Home: View {
+    
+    @State var selectedtab = "Posts"
+    
     var body: some View {
-        Text("Home Logged In sucesfully")
+        ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)){
+              PostView()
+                    
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color("bg").ignoresSafeArea(.all, edges: .all))
+            
     }
 }
 

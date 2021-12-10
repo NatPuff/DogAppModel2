@@ -11,11 +11,13 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @AppStorage("curren_status") var status = false
+    @AppStorage("current_status") var status = false
     var body: some View {
         NavigationView{
+            
             VStack{
                 if status{Home()}
+                
                 else{Login()}
             }
            

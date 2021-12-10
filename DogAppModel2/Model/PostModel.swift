@@ -13,4 +13,6 @@ struct PostModel : Identifiable {
     var title: String
     var pic: String
     var time: Date
+    var user : UserModel
+
 }
